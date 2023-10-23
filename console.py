@@ -123,14 +123,13 @@ class HBNBCommand(cmd.Cmd):
             for arg in list_args[1:]:
                 arg_split = arg.split("=")
                 arg_split[1] = eval(arg_split[1])
-                if type(attribute_value) is str:
-                        arg_split[1] = arg_split[1].replace("_", " ").replace('"', '\\"')
+                if type(arg_split[1]) is str:
+                    arg_split[1] = arg_split[1].replace("_", " ").replace('"', '\\"')
                 key_val[arg_split[0]] = arg_split[1]
         except SyntaxError:
             print("** class name missing **")
         except NameError:
-            print("** class does't exist **")
-
+            print("** class doesn't exist **")
         new_instance = HBNBCommand.classes[list_args[0]](**key_val)
         new_instance.save()
         print(new_instance.id)
