@@ -53,7 +53,6 @@ class FileStorage:
         """
         delete an element existing
         """
-        if obj is not None:
+        if obj:
             k = f"{obj.__class__.__name__}.{obj.id}"
-            if k in self.__objects:
-                del self.__objects[key]
+            del self.__objects[key]
