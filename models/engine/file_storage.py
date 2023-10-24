@@ -73,4 +73,4 @@ class FileStorage:
         """
         if obj:
             k = f"{obj.__class__.__name__}.{obj.id}"
-            del self.__objects[key]
+            del self.__objects[k]
