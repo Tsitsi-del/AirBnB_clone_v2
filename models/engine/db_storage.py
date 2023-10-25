@@ -81,5 +81,12 @@ class DBStorage:
         create all table in the database
         """
         Base.metadata.create_all(self.__engine)
-        Session = sessionmaker(bind=self.__engine, expire_on_commit=False)
-        self.__session = scoped_session(Session)
+        ses = sessionmaker(bind=self.__engine, expire_on_commit=False)
+        Session = scoped_session(ses)
+        self.__session = Session()
+
+    def close(self):
+        """
+        removes session
+        """
+        self.__session.close()
