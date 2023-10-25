@@ -49,9 +49,9 @@ class Place(BaseModel, Base):
         """
         Getter aattribute for reviews
         """
+        variable = models.storage.all()
         rlist = []
         res = []
-        variable = models.storage.all()
         for k in variable:
             review = k.replace(".", " ")
             review = shlex.split(review)
@@ -76,4 +76,3 @@ class Place(BaseModel, Base):
         """
         if type(obj) is Amenity and obj.id not in self.amenity_ids:
             self.amenity_ids.append(obj.id)
-
