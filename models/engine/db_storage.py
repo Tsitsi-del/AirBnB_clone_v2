@@ -44,16 +44,16 @@ class DBStorage:
         if cls:
             if type(cls) is str:
                 cls = eval(cls)
-            q = self.__session.query(cls)
-            for element in q:
+            query = self.__session.query(cls)
+            for element in query:
                 k = f"{type(element).__name__}.{element.id}"
                 obj_dic[k] = element
         else:
             list_class = [State, City, User, Place, Review, Amenity]
             for cl in list_class:
-                q = self.__session.query(cl)
-                for element in q:
-                    k = f"{type(element).__name__}.{element.id}"
+                query = self.__session.query(cl)
+                for element in query:
+                    k = "{}.{}".format(type(element).__name__, element.id)
                     obj_dic[k] = element
         return (obj_dic)
 
